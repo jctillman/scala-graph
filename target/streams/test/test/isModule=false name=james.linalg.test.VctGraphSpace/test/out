@@ -1,18 +1,6 @@
 [0m[[0minfo[0m] [0m[32mVctGraphSpace:[0m[0m
 [0m[[0minfo[0m] [0m[32m- Can multiply some matrices, and get a result--not really testing much[0m[0m
-[0m[[0minfo[0m] [0m[31m- Uber basic backprop *** FAILED ***[0m[0m
-[0m[[0minfo[0m] [0m[31m  java.lang.AssertionError: assertion failed[0m[0m
-[0m[[0minfo[0m] [0m[31m  at scala.Predef$.assert(Predef.scala:151)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at james.graph.Add.<init>(GraphSpace.scala:99)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at james.linalg.test.VctGraphSpace$$anonfun$4.apply$mcV$sp(GraphSpaceTest.scala:39)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at james.linalg.test.VctGraphSpace$$anonfun$4.apply(GraphSpaceTest.scala:35)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at james.linalg.test.VctGraphSpace$$anonfun$4.apply(GraphSpaceTest.scala:35)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
-[0m[[0minfo[0m] [0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:20)[0m[0m
-[0m[[0minfo[0m] [0m[31m  ...[0m[0m
+[0m[[0minfo[0m] [0m[32m- Uber basic backprop[0m[0m
 [0m[[0minfo[0m] [0m[32m- Uber basic backprop with more complex network[0m[0m
 [0m[[0minfo[0m] [0m[32m- Uber basic backprop with more complex network and sigmoid functions[0m[0m
 [0m[[0minfo[0m] [0m[32m- Less basic backpropogation -- harder problem[0m[0m

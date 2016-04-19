@@ -1,17 +1,17 @@
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctVctReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxDoubleReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxStatic, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctBooleanReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxMtxReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxFillerTest, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctDoubleReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxBooleanReturns, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctGraphSpace, org.scalatest.tools.Framework$$anon$1@3ee8396e, false, [SuiteSelector])[0m
-[0m[[0minfo[0m] [0m[36mRun completed in 1 second, 780 milliseconds.[0m[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctBooleanReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxStatic, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctVctReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxFillerTest, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctDoubleReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.VctGraphSpace, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxBooleanReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxDoubleReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(james.linalg.test.MtxMtxReturns, org.scalatest.tools.Framework$$anon$1@19125058, false, [SuiteSelector])[0m
+[0m[[0minfo[0m] [0m[36mRun completed in 1 second, 973 milliseconds.[0m[0m
 [0m[[0minfo[0m] [0m[36mTotal number of tests run: 29[0m[0m
 [0m[[0minfo[0m] [0m[36mSuites: completed 9, aborted 0[0m[0m
-[0m[[0minfo[0m] [0m[36mTests: succeeded 28, failed 1, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0minfo[0m] [0m[31m*** 1 TEST FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[36mTests: succeeded 29, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0minfo[0m] [0m[32mAll tests passed.[0m[0m
 [0m[[0mdebug[0m] [0mPassed tests:[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.MtxDoubleReturns[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.VctVctReturns[0m
@@ -19,8 +19,6 @@
 [0m[[0mdebug[0m] [0m	james.linalg.test.VctBooleanReturns[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.MtxFillerTest[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.MtxBooleanReturns[0m
+[0m[[0mdebug[0m] [0m	james.linalg.test.VctGraphSpace[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.VctDoubleReturns[0m
 [0m[[0mdebug[0m] [0m	james.linalg.test.MtxMtxReturns[0m
-[0m[[31merror[0m] [0mFailed tests:[0m
-[0m[[31merror[0m] [0m	james.linalg.test.VctGraphSpace[0m
-[0m[[31merror[0m] [0m(test:[31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

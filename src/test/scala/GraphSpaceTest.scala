@@ -33,7 +33,7 @@ class VctGraphSpace extends FunSuite {
 	//(1,0) -> (0,1)
 	//(0,1) -> (1,0)
 	test("Uber basic backprop"){
-			val a = new InputMtx("a", (None, Option(2)))
+			val a = new InputMtx("a", (Option(1), Option(2)))
 			val b = new VariableMtx("b", (Option(2), Option(2)), mf.normal(0.1))
 			val c = new VariableMtx("c", (Option(1), Option(2)), mf.normal(0.1))
 			val output = new Add("add", c, new Mult("e", a, b))
@@ -43,7 +43,7 @@ class VctGraphSpace extends FunSuite {
 
 			var avLoss = 0.0
 			var lastLoss = 0.0
-			(1 to 300).foreach( x => {
+			(1 to 3000).foreach( x => {
 				val input = Map[String, Mtx]()
 				val sampleInput = new Mtx(List(List(r.nextInt(2), r.nextInt(2))))
 				val id = sampleInput.mx(0)(0) //+ sampleInput.mx(0)(1)
