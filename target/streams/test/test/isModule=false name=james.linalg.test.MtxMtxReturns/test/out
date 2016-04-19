@@ -1,0 +1,12 @@
+[0m[[0minfo[0m] [0m[32mMtxMtxReturns:[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing add[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing subtract[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing hadamard[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing scalarMult[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing mult[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing minor[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing matrix inversion[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing rowSwap[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing rowMult[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing rowAdd[0m[0m
+[0m[[0minfo[0m] [0m[32m- testing gaussJordan[0m[0m
