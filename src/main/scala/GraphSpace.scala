@@ -65,10 +65,14 @@ class InputMtx (
 		override def concreteOutputInner(inputs: Map[String, Mtx]): Mtx = {
 			inputs(name)
 		}
+		override def concreteDerivative(): Mtx = {
+			Mtx.filledMtx(cachedConcreteOutput.rowNum, cachedConcreteOutput.colNum, 0)
+		}
 		override def abstractOutput(): (Option[Int], Option[Int]) = dimensions
 		override def concreteDerivativeWithRespectTo(wrt: GraphComponent): Mtx = {
 			Mtx.filledMtx(wrt.dimensions._1.get, wrt.dimensions._2.get, 0)
 		}
+		override def adjust(eta: Double): Unit = {}
 }
 
 class VariableMtx(
@@ -166,8 +170,7 @@ class AddExact(
 		val dimensions = first.dimensions
 		
 		override def concreteOutputInner(inputs: Map[String, Mtx]): Mtx = {
-			cachedConcreteOutput = first.concreteOutput(inputs) + second.concreteOutput(inputs)
-			cachedConcreteOutput
+			first.concreteOutput(inputs) + second.concreteOutput(inputs)
 		}
 		override def abstractOutput(): (Option[Int], Option[Int]) = first.abstractOutput()
 		override def concreteDerivativeWithRespectTo(wrt: GraphComponent): Mtx = {
@@ -205,8 +208,12 @@ class Mult(
 				val temp = n.mult(second.cachedConcreteOutput.trans())
 				temp
 			}else if (wrt.eq(second)){
-				val n = first.cachedConcreteOutput.trans().mult(this.concreteDerivative())
-				n
+				var n = first.cachedConcreteOutput.trans()
+				if (n.colNum != this.concreteDerivative().rowNum){
+					n = n.foldToSingleCol()
+				}
+				val temp = n.mult(this.concreteDerivative())
+				temp
 			} else {
 				Mtx.filledMtx(wrt.dimensions._1.get, wrt.dimensions._2.get, 0)
 			}
@@ -253,11 +260,25 @@ class MeanSquaredLoss(
 		}
 		override def concreteDerivativeWithRespectTo(wrt: GraphComponent): Mtx = {
 			if(wrt.eq(first)){
-				val diff = first.cachedConcreteOutput - second.cachedConcreteOutput
-				diff
+				if (wrt.cachedConcreteOutput.rowNum == 1){
+					val diff = first.cachedConcreteOutput - second.cachedConcreteOutput
+					diff.foldToSingleRow()
+				} else if (wrt.cachedConcreteOutput.colNum == 1){
+					val diff = first.cachedConcreteOutput - second.cachedConcreteOutput
+					diff.foldToSingleCol()
+				}
+				first.cachedConcreteOutput - second.cachedConcreteOutput
 			}else if(wrt.eq(second)){
-				val diff = second.cachedConcreteOutput - first.cachedConcreteOutput
-				diff
+
+				if (wrt.cachedConcreteOutput.rowNum == 1){
+					val diff = second.cachedConcreteOutput - first.cachedConcreteOutput
+					diff.foldToSingleRow()
+				} else if (wrt.cachedConcreteOutput.colNum == 1){
+					val diff = second.cachedConcreteOutput - first.cachedConcreteOutput
+					diff.foldToSingleCol()
+				}
+				second.cachedConcreteOutput - first.cachedConcreteOutput
+
 			}else{
 				Mtx.filledMtx(wrt.dimensions._1.get, wrt.dimensions._2.get, 0)
 			}

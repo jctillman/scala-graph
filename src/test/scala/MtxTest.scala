@@ -84,6 +84,18 @@ class MtxMtxReturns extends FunSuite {
     assert(a.broadcastCol(b) == c)
   }
 
+  test("testing foldToSingleRow"){
+    val a = new Mtx(List(List(1,2,1),List(4,5,6),List(7,8,9)))
+    val b = new Mtx(List(List(12,15,16)))
+    assert(a.foldToSingleRow() == b)
+  }
+
+  test("testing foldToSingleCol"){
+    val a = new Mtx(List(List(1,2,3),List(4,0,6),List(7,1,9)))
+    val b = new Mtx(List(List(6),List(10), List(17)))
+    assert(a.foldToSingleCol() == b)
+  }
+
   test("testing subtract"){
     val l = new Mtx(List(List(0,0), List(0,0)))
     val n = new Mtx(List(List(1,0), List(0,1)))

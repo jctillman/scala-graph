@@ -82,32 +82,31 @@ class VctGraphSpace extends FunSuite {
 
 			var avLoss = 0.0
 			var lastLoss = 0.0
-			(1 to 200).foreach( x => {
+			(1 to 550).foreach( x => {
 				val input = Map[String, Mtx]()
 
-				// var samples = ListBuffer[List[Double]]()
-				// var outputs = ListBuffer[List[Double]]()
-				// (0 until 4).foreach( x => {
-				// 	samples += List(r.nextInt(2), r.nextInt(2))
-				//     val id = samples(x)(0) 
-				//     val ib = samples(x)(1)
-				//     outputs += List(1-ib, 1-id)
-				// })
-				// println(samples.length)
-				// println(samples(0).length)
-				// val sampleInput = new Mtx(samples.toList)
-				// val sampleOutput = new Mtx(outputs.toList)
+				var samples = ListBuffer[List[Double]]()
+				var outputs = ListBuffer[List[Double]]()
+				(0 until 10).foreach( x => {
+					samples += List(r.nextInt(2), r.nextInt(2))
+				    val id = samples(x)(0) 
+				    val ib = samples(x)(1)
+				    outputs += List(1-ib, 1-id)
+				})
 
-				val sampleInput = new Mtx(List(List(r.nextInt(2), r.nextInt(2))))
-				val id = sampleInput.mx(0)(0) //+ sampleInput.mx(0)(1)
-				val ib = sampleInput.mx(0)(1)
-				val sampleOutput = new Mtx(List(List(1-ib,1-id)))
+				val sampleInput = new Mtx(samples.toList)
+				val sampleOutput = new Mtx(outputs.toList)
+
+				// val sampleInput = new Mtx(List(List(r.nextInt(2), r.nextInt(2))))
+				// val id = sampleInput.mx(0)(0) //+ sampleInput.mx(0)(1)
+				// val ib = sampleInput.mx(0)(1)
+				// val sampleOutput = new Mtx(List(List(1-ib,1-id)))
 
 				input += ("a" -> sampleInput)
 				input += ("correct" -> sampleOutput)
 				val output = loss.run(input)
 				avLoss = avLoss + output.mx(0)(0)
-				loss.adjust(0.25)
+				loss.adjust(0.015)
 				if(x % 10 == 0){
 					lastLoss = avLoss
 					//println(avLoss / 10)
