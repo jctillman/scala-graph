@@ -1,6 +1,8 @@
 
 package james.linalg
 
+
+
 import scala.math._
 import james.util.misc.{transpose => listTranspose}
 import james.util.deeps.{map => deepMap}
@@ -70,6 +72,44 @@ class Mtx(data: List[List[Double]]) {
 	//Return Mtx
 	def transpose(): Mtx = { new Mtx(this.cols())}
 	def trans(): Mtx = this.transpose()
+
+	def broadcastRow(other: Mtx): Mtx = {
+		assert(other.rowNum == 1)
+		assert(this.rowNum > 1)
+		val rows = this.rows()
+		val singleRow = other.row(0)
+		val folded = rows.map( row => {
+			singleRow.zipWithIndex.map({ case (value, dex) => value + row(dex)})
+		});
+		new Mtx(folded)
+	} 
+
+	def broadcastCol(other: Mtx): Mtx = {
+		assert(other.colNum == 1)
+		assert(this.colNum > 1)
+		val cols = this.cols()
+		val singleCol = other.col(0)
+		val folded = cols.map( col => {
+			singleCol.zipWithIndex.map({ case (value, dex) => value + col(dex)})
+		});
+		new Mtx(folded).trans()
+	}
+
+	def foldToSingleRow(): Mtx = {
+		val rows = this.rows()
+		val folded = rows.tail.foldLeft(rows.head)({ case (building, row) => {
+			building.zipWithIndex.map({ case (value, dex) => value + row(dex) })
+		}})
+		new Mtx(List(folded))
+	}
+
+	def foldToSingleCol(): Mtx = {
+		val cols = this.cols()
+		val folded = cols.tail.foldLeft(cols.head)({ case (building, col) => {
+			building.zipWithIndex.map({ case (value, dex) => value + col(dex) })
+		}})
+		new Mtx(List(folded)).trans()
+	}
 
 	def add(other: Mtx): Mtx = { new Mtx(deepCombine[Double](mx, other.mx, _+_))}
 	def +(other: Mtx): Mtx = this.add(other)

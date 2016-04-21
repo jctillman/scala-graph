@@ -70,6 +70,20 @@ class MtxMtxReturns extends FunSuite {
   	assert(l + m == m)
   }
 
+  test("testing broadcastRow"){
+    val a = new Mtx(List(List(0,0),List(1,1),List(2,2)))
+    val b = new Mtx(List(List(4,4)))
+    val c = new Mtx(List(List(4,4),List(5,5),List(6,6)))
+    assert(a.broadcastRow(b) == c)
+  }
+
+  test("testing broadcastCol"){
+    val a = new Mtx(List(List(1,0,0),List(1,1,1),List(2,2,2)))
+    val b = new Mtx(List(List(4),List(5),List(4)))
+    val c = new Mtx(List(List(5,4,4),List(6,6,6),List(6,6,6)))
+    assert(a.broadcastCol(b) == c)
+  }
+
   test("testing subtract"){
     val l = new Mtx(List(List(0,0), List(0,0)))
     val n = new Mtx(List(List(1,0), List(0,1)))

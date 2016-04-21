@@ -4,6 +4,9 @@ import scala.collection.mutable.Map
 import scala.util.{Random => r}
 import org.scalatest.FunSuite
 
+import scala.collection.mutable.ListBuffer
+
+
 // import james.graph.GraphSpace
 import james.linalg.Mtx
 import james.graph._
@@ -65,26 +68,41 @@ class VctGraphSpace extends FunSuite {
 		}
 
 		test("Uber basic backprop with more complex network"){
-			val a = new InputMtx("a", (Option(1), Option(2)))
+			val a = new InputMtx("a", (None, Option(2)))
 			val b = new VariableMtx("b", (Option(2), Option(10)), mf.normal(0.1))
 			val c = new VariableMtx("c", (Option(1), Option(10)), mf.normal(0.1))
-			val d = new Add("add", c, new Mult("wd", a, b))
+			val d = new Add("d", c, new Mult("wd", a, b))
 
 			val e = new VariableMtx("e", (Option(10), Option(2)), mf.normal(0.1))
 			val f = new VariableMtx("f", (Option(1), Option(2)), mf.normal(0.1))
-			val output = new Add("add", f, new Mult("wdd", d, e))
+			val output = new Add("output", f, new Mult("wdd", d, e))
 
-			val correct = new InputMtx("correct", (Option(1), Option(2)))
+			val correct = new InputMtx("correct", (None, Option(2)))
 			val loss = new MeanSquaredLoss("loss", output, correct)
 
 			var avLoss = 0.0
 			var lastLoss = 0.0
 			(1 to 200).foreach( x => {
 				val input = Map[String, Mtx]()
+
+				// var samples = ListBuffer[List[Double]]()
+				// var outputs = ListBuffer[List[Double]]()
+				// (0 until 4).foreach( x => {
+				// 	samples += List(r.nextInt(2), r.nextInt(2))
+				//     val id = samples(x)(0) 
+				//     val ib = samples(x)(1)
+				//     outputs += List(1-ib, 1-id)
+				// })
+				// println(samples.length)
+				// println(samples(0).length)
+				// val sampleInput = new Mtx(samples.toList)
+				// val sampleOutput = new Mtx(outputs.toList)
+
 				val sampleInput = new Mtx(List(List(r.nextInt(2), r.nextInt(2))))
 				val id = sampleInput.mx(0)(0) //+ sampleInput.mx(0)(1)
 				val ib = sampleInput.mx(0)(1)
 				val sampleOutput = new Mtx(List(List(1-ib,1-id)))
+
 				input += ("a" -> sampleInput)
 				input += ("correct" -> sampleOutput)
 				val output = loss.run(input)

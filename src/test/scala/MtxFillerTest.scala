@@ -1,5 +1,7 @@
 package james.linalg.test
 
+import scala.collection.mutable.ListBuffer
+
 import org.scalatest.FunSuite
 
 import james.graph.{MtxFiller => mf}
