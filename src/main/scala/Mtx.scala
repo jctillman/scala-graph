@@ -1,8 +1,6 @@
 
 package james.linalg
 
-
-
 import scala.math._
 import james.util.misc.{transpose => listTranspose}
 import james.util.deeps.{map => deepMap}
