@@ -27,17 +27,18 @@ abstract class GraphComponent {
 		dep.parents += this
 	}
 
-	def adjustInner(eta: Double, past: Int): Unit = {
-		parents.foreach(_.adjustInner(eta, past))
+	def adjustInner(eta: Double, past: Int, from: Int): Unit = {
+		parents.foreach(_.adjustInner(eta, past, from))
 	}
 	def adjust(eta: Double): Unit = {
-		adjustInner(eta, 0)
+		adjustInner(eta, 0, 0)
 	}
 
 	def cachedDeriv(num: Int): Mtx = cachedDerivInner(num)
-	def deriv(): Mtx = {
-		if(hasCalcDeriv){
-			cachedDeriv(0)
+
+	def derivInner(time: Int, from: Int): Mtx = {
+		if( (hasCalcDeriv && time == 0 && from == 0) ){
+			cachedDeriv(time)
 		}else{
 			val ds = children.map(_.derivWRT(this))
 			val added = ds.tail.fold(ds.head)(_.add(_))
@@ -49,6 +50,10 @@ abstract class GraphComponent {
 			cachedDerivInner(0)
 		}
 	}
+	def deriv(): Mtx = {
+		derivInner(0,0)
+	}
+
 	def run(a: Map[String, Mtx]): Mtx = output(a)
 	def cachedOutput(num: Int): Mtx = cachedOutputInner(0)
 	def output(a: Map[String, Mtx]): Mtx = {

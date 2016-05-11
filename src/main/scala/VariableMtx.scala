@@ -16,7 +16,7 @@ class VariableMtx(
 		override def derivWRT(wrt: GraphComponent): Mtx = {
 			Mtx.filledMtx(wrt.dim._1.get, wrt.dim._2.get, 0)
 		}
-		override def adjustInner(eta: Double, past: Int): Unit = {
-			value -= this.deriv().scalarMult(eta)
+		override def adjustInner(eta: Double, past: Int, from: Int): Unit = {
+			value -= this.derivInner(past, from).scalarMult(eta)
 		}
 }

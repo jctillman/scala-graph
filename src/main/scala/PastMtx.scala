@@ -24,8 +24,8 @@ class PastMtx (
 		}
 	}
 
-	override def adjustInner(eta: Double, time: Int): Unit = {
-		parents.foreach(_.adjustInner(eta, 1))
+	override def adjustInner(eta: Double, time: Int, from: Int): Unit = {
+		parents.foreach(_.adjustInner(eta, time+1, from))
 	}
 
 
