@@ -40,6 +40,7 @@ abstract class GraphComponent {
 		if( (hasCalcDeriv && time == 0 && from == 0) ){
 			cachedDeriv(time)
 		}else{
+			val filteredChildren = if (time == 0) children else children.filter(_.isInstanceOf[PastMtx])
 			val ds = children.map(_.derivWRT(this))
 			val added = ds.tail.fold(ds.head)(_.add(_))
 			cachedDerivInner.prepend(added)
